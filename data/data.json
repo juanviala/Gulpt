@@ -1,0 +1,58 @@
+[
+	{
+        "id": 1,
+        "name": "Ghost Rider",
+        "artist": "The Fett",
+        "price": 800,
+        "tags": ["marvel", "star wars", "mashup"],
+		"image": "./images/ghostrider.jpg"
+	},
+	{
+		"id": 2,
+        "name": "Chocobo",
+        "artist": "The Fett",
+        "price": 2100,
+        "tags": ["final fantasy", "chocobo", "ff", "jrpg"],
+		"image": "./images/chocobo.jpg"
+    },
+    {
+		"id": 3,
+        "name": "Com-mando",
+        "artist": "Dystopian Customs",
+        "price": 1100,
+        "tags": ["star wars", "boba fett", "mandalorian", "soldado"],
+		"image": "./images/commando.jpg"
+    },
+    {
+		"id": 4,
+        "name": "Messith",
+        "artist": "Dystopian Customs",
+        "price": 1400,
+        "tags": ["darth vader", "star wars", "messi", "futbol", "barcelona"],
+		"image": "./images/messith.jpg"
+    },
+    {
+		"id": 5,
+        "name": "Iron Maul",
+        "artist": "Dystopian Customs",
+        "price": 1200,
+        "tags": ["marvel", "star wars", "iron man", "darth maul"],
+		"image": "./images/ironmaul.jpg"
+    },
+    {
+		"id": 6,
+        "name": "Sherman Walker",
+        "artist": "Dystopian Customs",
+        "price": 1800,
+        "tags": ["tanque", "robot", "guerra"],
+		"image": "./images/shermanwalker.jpg"
+    },
+    {
+		"id": 7,
+        "name": "Leonardo Watercolor",
+        "artist": "Kosmo toys",
+        "price": 800,
+        "tags": ["tmnt", "leonardo", "color"],
+		"image": "./images/leonardowatercolor.jpg"
+    } 
+]
