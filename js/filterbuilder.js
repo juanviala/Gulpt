@@ -1,12 +1,10 @@
-filtersJson = filtersJson;
-filterArtist = filtersJson[0].artists;
-filterPrices = filtersJson[1].prices;
-    
 buildFilters = function(key) {
-    myFilterBuilder.html(buildHtmlFilter()); 
+    myFilterBuilder.html(buildHtmlFilter(key)); 
 }
 
     buildHtmlFilter = function(filter) {
+        filterArtist = filter[0].artists;
+        filterPrices = filter[1].prices;
         return `
         <h5>FILTROS</h5>
         <ul>
@@ -14,18 +12,18 @@ buildFilters = function(key) {
           <hr>
           <li class="list-title">Artista</li>
           <ul id="build-artist">
-            ${buildArtist()}
+            ${buildArtist(filterArtist)}
           </ul>
           <hr>
           <li class="list-title">Precio</li>
                 <ul>
-            ${buildPrices()}
+            ${buildPrices(filterPrices)}
           </ul>
         </ul>
         `
     }
 
-    buildArtist = function() {
+    buildArtist = function(filterArtist) {
         var html = '';
         filterArtist.forEach(filter => {
             html = html + `<li onclick="filteredArtistSearch('${ filter['value'] }')" style="cursor:pointer">${ filter['name'] }</li>`;

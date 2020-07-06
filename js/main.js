@@ -9,59 +9,82 @@ var amountKey;
 var keySearchInput;
 var formSearch;
 var results = [];
+var data;
 
 function lessProduct(id) {
   myShoppingCart.remove(data[id-1]);
-  var totalPrice = totalPrice - data[id-1].price;
+}
+
+function addTags(tags) {
+  $('#tags-product').empty();
+  tags.forEach(tag => {
+    $('#tags-product').append(`<span class="badge badge-light m-1"><a href="#" onclick="straightSearch('${tag}')">${tag}</a></span>`);
+  })
+}
+
+function addImg(images) {
+  $('#img-product').empty();
+  images.forEach(img => {
+    $('#img-product').append(`
+      <div class="carousel-item">
+        <img src="./images/products/${img}" class="d-block w-100">
+      </div>
+    `);
+  })
+  $( ".carousel-item:first-child" ).addClass("active");
+}
+
+
+function viewDetails(id) {
+  $('#title-product').html(data[id-1].name);
+  
+  $('#img-product').html(addImg(data[id-1].image));
+  $('#artist-product').html(`Artista: <a href="#" onclick="straightSearch('${data[id-1].artist}')">${data[id-1].artist}</a>`);
+  $('#price-product').html(`Precio: ${data[id-1].price}`);
+  $('#tags-product').html(addTags(data[id-1].tags));  
+  $('#cart-product').html(`<a style="color:black; cursor:pointer" onclick="moreProduct('${data[id-1].id}')"><i class="fas fa-plus-circle tooltips" data-toggle="tooltip" data-placement="right" title="Agregar al Carrito"></i> Agregar al carrito</a>`)
 }
 
 function moreProduct(id) {
   myShoppingCart.add(data[id-1]);
-  var totalPrice = totalPrice + data[id-1].price;
 }
+
 
 $(document).ready(() => {
 
+  myFilterBuilder = $('#filter-list');
+  $.ajax({
+    method: 'GET',
+    url: "./data/filters.json",
+    dataType: 'json',
+    }).done( function(filters){
+      buildFilters(filters);
+      }).fail( function(){
+        console.log('Hubo un problema, no podrá utilizar filtros');
+        })
+
   productsContainer = $('#products-container');
-  buildList(data);
+  $.ajax({
+    method: 'GET',
+    url: "./data/data.json",
+    dataType: 'json',
+    }).done( function(d) {
+        buildList(d);
+        data = d;
+      }).fail( function(){
+        alert('Hubo un problema, por favor vuelva a intentarlo');
+        })
 
   myShoppingCart = new ShoppingCart();
   myShoppingCart.populate();
   myShoppingCart.buildCart('cart-container');
-
-  myFilterBuilder = $('#filter-list');
-  buildFilters();
-        
+      
   myShoppingCart.totalPriceRender();
   myShoppingCart.setBadgeAmount();
   
   $('#delete-input').click(function(){
 		deleteInput();
   });
-
-  $('.bg-white').hide()
-  $('#contacto').hide()
-
-  $('.go-shopping').click(function(){
-    $('.bg-white').show(5000)
-    $('#landing').hide(5000)
-    $('#contacto').hide(5000)
-    $('nav').attr("style", "");
-  })
-
-  $('#go-home').click(function(){
-    $('#landing').show(5000)
-    $('.bg-white').hide(5000)
-    $('#contacto').hide(5000)
-    $('nav').attr("style", "z-index:1100");
-  })
-
-  $('#go-contact').click(function(){
-    $('#contacto').show(5000)
-    $('#landing').hide(5000)
-    $('.bg-white').hide(5000)
-    $('nav').attr("style", "z-index:1100");
-  })
 
   searchKey = $('#search-key');
   amountKey = $('#search-result-length');
@@ -82,4 +105,41 @@ $(document).ready(() => {
     e.preventDefault();
 	  getSearchBoxValue();
   });
+
+  $('.bg-white, #lipsum, #badge-counter').hide();
+  $('#go-home').show();
+
+  $( "#badge-counter" ).mouseenter(function() {
+    $( this ).effect( "bounce", { distance: 5, times: 3 }, 1000 );
+  });
+
+  var jqueryContainer = $('#landing'); // PARA EVITAR CONFLICTOS DE SELECTORES CON UI JQUERY
+  $('.go-shopping').click(function() {    
+    $(jqueryContainer).hide("fold", 'fast', function() {
+        $('nav').attr("style", ""); // PARA QUE EL MODAL DEL CARRITO NO SE ESCONDA TRAS EL NAV 
+        $('.bg-white').show("puff", 500);
+        $('#badge-counter').show();
+        jqueryContainer = $('.bg-white');
+      })
+  })
+
+  $('#go-home').click(function() {
+    $('nav').attr("style", "z-index:1100"); // PARA QUE EL NAV NO SE TAPE
+    $(jqueryContainer).hide("fold", 'fast', function() {
+      $('#badge-counter').hide();
+      $('#landing').show("puff", 500);
+      jqueryContainer = $('#landing');
+    })
+  })
+
+  $('#go-lipsum').click(function() {
+    $('nav').attr("style", "z-index:1100"); // PARA QUE EL NAV NO SE TAPE
+    $(jqueryContainer).hide("fold", 'fast', function() {
+      $('#badge-counter').hide();
+      $('#lipsum').show("puff", 500);
+      jqueryContainer = $('#lipsum');
+    })
+  })
+  
+  $(".tooltips").tooltip({ boundary: "window" })
 });

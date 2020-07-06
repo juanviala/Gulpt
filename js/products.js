@@ -9,13 +9,12 @@ function search(key) {
 }
 
 function deleteInput() {
-    $(keySearchInput.val('')) 
+    $(keySearchInput.val(''))
     buildList(data);
     setKeySearchRender('');
   }
   
   function getSearchBoxValue() {
-    
     var searchResult = search(keySearchInput.val());
   
     if (keySearchInput.val().trim() !== '') {
@@ -26,15 +25,20 @@ function deleteInput() {
   
   function setKeySearchRender(lengthResult) {
     if(lengthResult == '') {
-      $(amountKey.html(''));
-    } else {
-      $(amountKey.html(`${lengthResult} resultados de búsqueda`));
-    }
+        $(amountKey.html(''));
+      } else {
+        $(amountKey.html(`${lengthResult} resultados de búsqueda`));
+      }
   }
 
+  straightSearch = function (key) {
+    var searchResult = search(key);
+    setKeySearchRender(searchResult.length);
+    buildList(searchResult);
+  }
 
 filteredArtistSearch = function(key) {
-    filterArtist = [];        
+    filterArtist = [];    
     if(keySearchInput.val() != '') {
         filterArtist = results.filter(filtered => filtered.artistvalue === key);
     } else {
@@ -66,17 +70,17 @@ filteredFeaturedSearch = function(key) {
     setKeySearchRender(filterFeatured.length);
 }
 
-function buildHtmlProduct(product,index) {
-    productsContainer.append(`
+function buildHtmlProduct(product) {
+        productsContainer.append(`
         <article class="col-xs-12 col-md-6 col-lg-3 themed-grid-col search-item">
             <div class="row">            
                 <div class="col-xs-12">
-                    <img src="./images/products/${product.image}">
+                    <img src="./images/products/${product.image[0]}">
                     <hr>
                 </div>
                 <div class="col-12 mb-2">
-                    <a href="#" style="color:black"><i class="far fa-eye tooltips" data-toggle="tooltip" data-placement="right" title="Ver en Detalle"></i></a> | 
-                    <a style="color:black; cursor:pointer;" class="moreProduct" data-id="${product.id}" onclick="moreProduct('${product.id}')"><i class="fas fa-plus-circle tooltips" data-toggle="tooltip" data-placement="right" title="Agregar al Carrito"></i></a>
+                    <a style="color:black; cursor:pointer" onclick="viewDetails('${product.id}')" data-toggle="modal" data-target="#productModal"><i class="far fa-eye tooltips" data-toggle="tooltip" data-placement="right" title="Ver en Detalle"></i></a> | 
+                    <a style="color:black; cursor:pointer" onclick="moreProduct('${product.id}')"><i class="fas fa-plus-circle tooltips" data-toggle="tooltip" data-placement="right" title="Agregar al Carrito"></i></a>
                 </div>
                 <div class="col-12">
                     <h1 id="product-title">${product.name}</h1>

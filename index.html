@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <title>Desafío Clase 12</title>
+    <title>Proyecto Entrega 3</title>
 
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.css" rel="stylesheet">
@@ -12,7 +12,8 @@
     <link href="./css/grid.css" rel="stylesheet">
     <link href="./css/styles.css" rel="stylesheet">
     <link href="./css/blog.css" rel="stylesheet">
-	
+
+    <link rel="stylesheet" href="./js/uijquery/jquery-ui.min.css">
 	    
     <style>
       .bd-placeholder-img {
@@ -34,12 +35,13 @@
 	  <link rel="icon" href="./images/favicon.png" type="image/png" sizes="16x16">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,700;0,900;1,900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f24f821874.js" crossorigin="anonymous"></script>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="./js/bootstrap.bundle.js"></script>
     
-    <script src='./js/json.js'></script>
-    <script src='./js/filters.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="./js/bootstrap.bundle.js"></script>
+
+    <script src="./js/uijquery/jquery.js"></script>
+    <script src="./js/uijquery/jquery-ui.min.js"></script>
+    
     <script src='./js/products.js'></script>
     <script src='./js/shoppingcart.js'></script>
     <script src='./js/filterbuilder.js'></script>
@@ -61,7 +63,7 @@
             <a class="go-shopping nav-link" href="#">Tienda</a>
           </li>
           <li class="nav-item">
-            <a id="go-contact" class="nav-link" href="#">Contacto</a>
+            <a id="go-lipsum" class="nav-link" href="#">Lipsum</a>
           </li>
         </ul>
       </div>
@@ -82,56 +84,14 @@
     </div>
   </div>
   
-  <div id="contacto" class="min-vh-100 row align-items-center fixed-top text-white" style="background-color: black;">
+  <div id="lipsum" class="min-vh-100 row align-items-center fixed-top text-white" style="background-color: black;">
     <div class="container">
       <div class="mx-auto row d-flex align-items-center">
         <div class="col-12">
-          <form>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="inputEmail4">Email</label>
-                <input type="email" class="form-control" id="inputEmail4">
-              </div>
-              <div class="form-group col-md-6">
-                <label for="inputPassword4">Password</label>
-                <input type="password" class="form-control" id="inputPassword4">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="inputAddress">Address</label>
-              <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-            </div>
-            <div class="form-group">
-              <label for="inputAddress2">Address 2</label>
-              <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="inputCity">City</label>
-                <input type="text" class="form-control" id="inputCity">
-              </div>
-              <div class="form-group col-md-4">
-                <label for="inputState">State</label>
-                <select id="inputState" class="form-control">
-                  <option selected>Choose...</option>
-                  <option>...</option>
-                </select>
-              </div>
-              <div class="form-group col-md-2">
-                <label for="inputZip">Zip</label>
-                <input type="text" class="form-control" id="inputZip">
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                  Check me out
-                </label>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Sign in</button>
-          </form>
+          <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae magna leo. Etiam scelerisque pharetra ornare. Donec aliquam, orci eleifend rutrum convallis, ipsum dolor dapibus mi, eget ullamcorper neque risus eu ex. Proin porttitor mi at velit dictum suscipit. Aenean porta id odio laoreet pulvinar. Integer ultricies eleifend nisi, eleifend malesuada turpis suscipit eget. Maecenas fringilla elementum felis quis facilisis. Morbi tempus sodales accumsan. Donec vestibulum ac tellus ac elementum. Donec pellentesque elit velit. Praesent tincidunt leo at nisl porttitor faucibus. Ut ut sapien et elit interdum dapibus in venenatis ex. Maecenas condimentum malesuada mauris sed placerat. Donec varius lorem et consequat consequat.</p>
+          <p class="text-white">In a odio non libero porttitor dignissim quis ut leo. Ut magna urna, pulvinar eu sollicitudin vel, rutrum a felis. Fusce vehicula, mauris ornare gravida interdum, tellus lorem faucibus elit, ut ornare odio neque a lectus. Ut ante nisl, feugiat non convallis egestas, fermentum nec felis. Cras vitae diam consectetur, blandit purus quis, hendrerit sem. Phasellus ut facilisis nunc. Nulla egestas elementum enim eu ullamcorper. Integer urna nisi, vulputate facilisis neque a, dictum lobortis dui. Ut mollis elementum purus, vitae faucibus massa. Curabitur sodales eros non leo rutrum, id scelerisque tellus aliquam. Integer feugiat odio sed nisi tempor imperdiet. Fusce convallis leo justo, ac molestie ante efficitur sit amet. Ut iaculis sapien in est feugiat, auctor dapibus massa elementum. Ut tincidunt tortor arcu, hendrerit fringilla turpis malesuada vel. Morbi a porta nunc. Vestibulum ullamcorper mi nisi, quis pharetra enim rutrum et.</p>
+          <p class="text-white">Integer luctus porta mauris ac rhoncus. Praesent feugiat posuere ultrices. Duis a ante scelerisque, elementum sem non, posuere ex. Nullam pellentesque lacinia elit, ut mattis sapien pretium ac. Nunc odio erat, placerat sit amet viverra in, accumsan ac risus. Maecenas aliquet fringilla odio ut sollicitudin. Fusce congue pulvinar neque et ultrices. Sed bibendum ligula ac est aliquet, at venenatis neque semper. Phasellus at est a est efficitur facilisis. Fusce euismod ac dolor sit amet lacinia. Donec sit amet eleifend augue.</p>
+          <p class="text-white">Quisque risus ex, elementum quis turpis eu, malesuada accumsan nisi. Donec tortor sapien, tincidunt ut auctor quis, lobortis nec urna. Maecenas porttitor, felis sed accumsan mattis, metus nulla congue nibh, non volutpat dui dui feugiat metus. Proin blandit vehicula sem sed sagittis. Fusce placerat placerat lacus, at vulputate ligula molestie a. Proin a elementum odio. Proin nec ante pharetra, iaculis ante et, consectetur orci. Praesent lobortis, mauris id rhoncus suscipit, nisl ligula rhoncus tortor, ut feugiat augue libero ut eros. Vestibulum sed tellus ligula. Maecenas ac mi erat. Proin urna lectus, finibus a magna posuere, porttitor sagittis ligula. Nunc pretium efficitur dolor a bibendum. Ut scelerisque diam nec ultricies dictum.</p>
         </div>
       </div>
     </div>
@@ -141,7 +101,7 @@
 		<div class="container jumbotron ml-auto pt-5 pb-0">
 		  <form id="form-search">
 			<div class="row">
-			  <div class="col-11"><input class="form-control mr-sm-2" type="input" placeholder="Hacé tu búsqueda" value="" id="search-bar-input" autofocus style="border-bottom: 1px solid #c5c5c5;"></div>
+			  <div class="col-11"><input class="form-control mr-sm-2" type="input" placeholder="Hacé tu búsqueda acá" value="" id="search-bar-input" autofocus style="border-bottom: 1px solid #c5c5c5;"></div>
 			  <div class="col-1"><button id="delete-input" class="btn btn-sm btn-light bg-white">X</button></div>
 			</div>
 		  </form>
@@ -174,14 +134,51 @@
               </div>
             </div>
           </div>
+
+          <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+              <div class="modal-content">
+                  <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="title-product"></h5>
+                  </div>
+                  <div class="modal-body">
+                    <div class="container">
+                      <div class ="row">
+                        <div class="col-xs-6 col-md-6">
+                          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                            <div id="img-product" class="carousel-inner"></div>
+                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Next</span>
+                            </a>
+                          </div>
+                        </div>
+                        <div class="col-xs-6 col-md-6">
+                          <h6 id="artist-product"></h6>
+                          <p id="price-product"></p>
+                          <hr>
+                          <p id="tags-product"></p>
+                          <p id="cart-product"></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </main>
-	</div>
+  </div>
+
   </body>
+
   <script>
-    $('.tooltips').tooltip({ boundary: 'window' })
-	
     $('#myModal').on('shown.bs.modal', function () {
       $('#myInput').trigger('focus')
     })

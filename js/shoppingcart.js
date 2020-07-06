@@ -7,25 +7,25 @@ function ShoppingCart() {
     cart = (localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : [];
     cart.forEach(product => {
       totalPrice = totalPrice + product.price;
-    });        
+    });
 	}
 	
 	this.add = function(product) {
 		cart.push(product);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    totalPrice = totalPrice + product.price;
-    this.buildCart('cart-container');
-    this.setBadgeAmount();        
-  }
+		localStorage.setItem('cart', JSON.stringify(cart));
+		totalPrice = totalPrice + product.price;
+		this.buildCart('cart-container');
+		this.setBadgeAmount();        
+	}
 
-  this.remove = function(id) {
-    var removeIndex = cart.findIndex(x => x.id === id.id);
-    cart.splice(removeIndex, 1)
-    localStorage.setItem('cart', JSON.stringify(cart));
-    totalPrice = totalPrice - id.price;
-    this.buildCart('cart-container');
-    this.setBadgeAmount();
-  }
+	this.remove = function(id) {
+		var removeIndex = cart.findIndex(x => x.id === id.id);
+		cart.splice(removeIndex, 1)
+		localStorage.setItem('cart', JSON.stringify(cart));
+		totalPrice = totalPrice - id.price;
+		this.buildCart('cart-container');
+		this.setBadgeAmount();
+	}
 
   this.get = function() {
     return cart;
