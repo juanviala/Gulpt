@@ -1,7 +1,23 @@
 var totalPrice = 0;
 
 function ShoppingCart() {
-	var cart = [];
+  var cart = [];
+  var uniqueValues = [];
+  
+  this.uniqueValues = function() {
+    uniqueValues = Array.from(new Set(cart.map(s => s.id))).map(id => {
+    	return {
+		    id:id,
+        name: cart.find(s => s.id === id).name,
+        price: cart.find(s => s.id === id).price
+      }      
+    })
+    return uniqueValues.sort(function(a,b){
+      if(a.name < b.name) { return -1; }
+      if(a.name > b.name) { return 1; }
+      return 0;
+    });
+  }
 
 	this.populate = function() {
     cart = (localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : [];
@@ -11,20 +27,24 @@ function ShoppingCart() {
 	}
 	
 	this.add = function(product) {
-		cart.push(product);
-		localStorage.setItem('cart', JSON.stringify(cart));
-		totalPrice = totalPrice + product.price;
+    cart.push(product);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    this.uniqueValues();
+    totalPrice = totalPrice + product.price;
 		this.buildCart('cart-container');
-		this.setBadgeAmount();        
+    this.setBadgeAmount();        
+    payPal()
 	}
 
 	this.remove = function(id) {
 		var removeIndex = cart.findIndex(x => x.id === id.id);
 		cart.splice(removeIndex, 1)
-		localStorage.setItem('cart', JSON.stringify(cart));
+    this.uniqueValues();
+    localStorage.setItem('cart', JSON.stringify(cart));
 		totalPrice = totalPrice - id.price;
 		this.buildCart('cart-container');
-		this.setBadgeAmount();
+    this.setBadgeAmount();
+    payPal()
 	}
 
   this.get = function() {
@@ -33,17 +53,34 @@ function ShoppingCart() {
 
   this.buildList = function() {
     var html = '';
-    cart.forEach(product => {
+    this.uniqueValues();
+    
+    uniqueValues.forEach(product => {
         html = html + `<li>${ product.name } / <b>${ product.price }</b></li>`;
     });
 
     return html;
   }
 
-  this.buildListMinusProduct = function() {
-    var html = '';
+  function count(id) {
+    cnt=0;
+
     cart.forEach(product => {
-        html = html + `<li><a style="color:black; cursor:pointer;" onclick="lessProduct('${product.id}')" class="tooltips" data-toggle="tooltip" data-placement="right" title="Sacar del Carrito"><i class="far fa-minus-square"></i></a></li>`;
+      if(product.id === id) {
+        cnt++
+      }
+    })
+
+    return cnt;
+}
+
+  this.buildListQuantity = function() {
+    var html = '';
+
+    this.uniqueValues();
+
+    uniqueValues.forEach(product => {
+        html = html + `<li><a style="color:black; cursor:pointer;" onclick="lessProduct('${product.id}')" title="Sacar del Carrito"><i class="far fa-minus-square"></i></a> ${count(product.id)}un. <a style="color:black; cursor:pointer;" onclick="moreProduct('${product.id}')" title="Agregar al Carrito"><i class="far fa-plus-square"></i></a></li>`;
     });
 
     return html;
@@ -74,23 +111,21 @@ function ShoppingCart() {
 			    <div class="row">
 				    <div class="col-6 mx-auto">
               <ul>
-                ${ this.buildList() }
+                ${ this.buildList()}
               </ul>
             </div>
             <div class="col-2 mx-auto" style="border-right: 1px solid #c5c5c5">
               <ul>
-                ${ this.buildListMinusProduct() }
+                ${ this.buildListQuantity() }
               </ul>
 				    </div>
 				    <div class="col-4 my-auto">
 					  	<h6>TOTAL <span id="total-price" class="font-weight-bold">${totalPrice}</span></h6>
-					    <div><button id="chance-discount" type="button" class="btn btn-sm btn-outline-success my-2 py-1">CHECKOUT</button></div>
-					    <span id="discount-true"></span>     
+              <div id="paypal-button-container"></div>
 				    </div>
 			    </div>
         </div>
-        `
-    
+        `    
     container.innerHTML = html;
     }
 }

@@ -37,7 +37,11 @@ function addImg(images) {
 
 function viewDetails(id) {
   $('#title-product').html(data[id-1].name);
-  
+  if((data[id-1].image).length > 1) {
+    $('.carousel-control-prev, .carousel-control-next').show()
+  } else {
+    $('.carousel-control-prev, .carousel-control-next').hide()
+  }
   $('#img-product').html(addImg(data[id-1].image));
   $('#artist-product').html(`Artista: <a href="#" onclick="straightSearch('${data[id-1].artist}')">${data[id-1].artist}</a>`);
   $('#price-product').html(`Precio: ${data[id-1].price}`);
@@ -49,8 +53,25 @@ function moreProduct(id) {
   myShoppingCart.add(data[id-1]);
 }
 
+function payPal() {
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: totalPrice  //Precio del producto
+          }
+        }]
+      });
+    },
+    
+  }).render('#paypal-button-container');
+}
+
 
 $(document).ready(() => {
+
+  payPal()
 
   myFilterBuilder = $('#filter-list');
   $.ajax({
@@ -141,5 +162,5 @@ $(document).ready(() => {
     })
   })
   
-  $(".tooltips").tooltip({ boundary: "window" })
+  $(".tooltips").tooltip({ boundary: "window" }) 
 });
